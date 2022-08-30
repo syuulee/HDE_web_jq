@@ -1,3 +1,9 @@
+/* 슬릭슬라이드 깜박임 해결 : 브라우즈 업그레이드와 관련있는 이슈였음... reset으로 옮길 예정 */
+.slick-slide {
+    transform: translate3d(0, 0, 0);
+}
+
+
 .inner {
     width: 1200px;
     margin: 0 auto;
@@ -42,12 +48,12 @@
 .TopBanner .top_close_btn {
     position: absolute;
     top: 30px;
-    right: 15px;
+    right: -2px;
     font-size: 40px;
 }
 
 .Header {
-    position: sticky;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -68,8 +74,6 @@
 .Header.on {
     background: rgba(255, 255, 255, 1);
     color: #444444;
-    line-height: 70px;
-    border-bottom: 1px solid #ddd;
 }
 
 .Header h1 {
@@ -123,7 +127,7 @@
     position: absolute;
     left: 35px;
     right: 100%;
-    bottom: 0;
+    bottom: -1px;
     height: 2px;
     background: #008850;
     transition: 0.3s;
@@ -143,9 +147,33 @@
 
 .Main_slider figure .inner {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
+    text-shadow: 0 0 3px #000;
+    color: #f9f9f9;
+}
+
+.Main_slider figure h2 {
+    font-size: 50px;
+    font-weight: 900;
+    margin: 0 0 20px 0;
+}
+
+.Main_slider figure p {
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.45;
+    margin: 0 0 50px 0;
+}
+
+.Main_slider .inner a {
+    display: inline-block;
+    font-size: 13px;
+    padding: 10px 25px;
+    border: 1px solid #f9f9f9;
+    color: #f9f9f9;
+    margin: 0 0 30px 0;
 }
 
 .Main_slider .itm01 {
@@ -161,8 +189,115 @@
 }
 
 .Section01 {
-    transform: translateY(-155px);
-    height: 745px;
+    position: relative;
+    padding: 155px 0 0 0;
+    transition: 0.5s;
+}
+
+.Section01.on {
+    padding: 0 0 0 0;
+}
+
+.Section01 .slider_handler button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* transform: translate(-50%, -50%); */
+    background: transparent;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 300;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    font-size: 0;
+    /* border-bottom: 1px solid #f9f9f9; */
+}
+
+.Section01 .slider_handler button::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 20px;
+    height: 0;
+    border-top: 1px solid #f9f9f9;
+}
+
+.Section01 .slider_handler button::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 60px;
+    height: 0;
+    border-top: 1px solid #f9f9f9;
+    transform: translateY(50%);
+}
+
+.Section01 .slider_handler button:first-child::after {
+    left: 0;
+    transform: translate(3px, -10px)rotate(-45deg);
+}
+
+.Section01 .slider_handler button:last-child::after {
+    right: 0;
+    transform: translate(17px, -10px)rotate(45deg);
+}
+
+.Section01 .slider_handler button:first-child {
+    margin: 0 0 0 -800px;
+}
+
+.Section01 .slider_handler button:last-child {
+    margin: 0 0 0 800px;
+}
+
+.Section01 .num {
+    position: absolute;
+    bottom: 150px;
+    left: 50%;
+    margin: 0 0 0 -600px;
+    columns: #fff;
+    font-size: 35px;
+}
+
+.Section01 .slider_dots {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0 0 0 600px;
+    transform: translate(-100%, -50%);
+    color: #f9f9f9;
+    font-size: 18px;
+    font-weight: 300;
+    text-align: right;
+}
+
+.Section01 .slider_dots li {
+    margin: 0 0 10px 0;
+}
+
+.Section01 .slider_dots li span {
+    font-size: 0;
+}
+
+.Section01 .slider_dots li.on span {
+    font-size: 18px;
+}
+
+.Section01 .slider_dots li::after {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    margin: 0 0 0 15px;
+    vertical-align: -0.2em;
+}
+
+.Section01 .slider_dots li.on::after {
+    background: #fff;
 }
 
 .section02 {
@@ -193,7 +328,7 @@
 }
 
 .section02 .inner figure img {
-    transition: 0.5s;
+    transition: 0.4s;
 }
 
 .section02 .inner figure:hover img {
@@ -202,7 +337,7 @@
 
 .section02 .inner .des {
     position: relative;
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 500;
     margin: 0 0 20px 0;
 }
@@ -210,11 +345,11 @@
 .section02 .inner .des::before {
     content: "";
     position: absolute;
-    top: -40px;
+    top: -60px;
     left: 50%;
-    transform: translateY(-50%);
+    transform: translateX(-50%);
     width: 2px;
-    height: 60px;
+    height: 40px;
     background: #008850;
 }
 
@@ -231,4 +366,228 @@
     padding: 10px 25px;
     border: 1px solid #008850;
     color: #008850;
+}
+
+.section03 {
+    padding: 100px 0;
+    background: url(../assets/section1_bg.jpg) repeat-x;
+}
+
+
+.section03 .slider_box {
+    float: right;
+    width: calc((100% - 1200px) / 2 + 1200px);
+    height: 700px;
+}
+
+.section03 .slider_box>div {
+    float: left;
+}
+
+.section03 .slider_box .left {
+    width: 450px;
+}
+
+.section03 .slider_box .left figure {
+    padding: 0 50px 0 0;
+}
+
+.section03 .slider_box .right {
+    position: relative;
+    padding: 30px 0 0 0;
+    width: calc(100% - 450px);
+    height: 100%;
+    /* .section03 .slider_box높이가 auto였어서 100% 상속받지 못하고, 쪼그라들었음. 그래서 slider_box높이를 주고, 100%로 받음 */
+    overflow: hidden;
+}
+
+.section03 .slider_box .right h2 {
+    font-size: 35px;
+    font-weight: 700;
+    margin: 0 0 15px 0;
+    color: #f9f9f9;
+}
+
+.section03 .slider_box .right p {
+    font-size: 17px;
+    font-weight: 300;
+    margin: 0 0 50px 0;
+    color: #f9f9f9;
+}
+
+.section03 .slider_box .left img {
+    box-shadow: 30px 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.section03 .slider_box .right figure {
+    padding: 0 30px 0 0;
+}
+
+.section03 .slider_box .right_slider {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: calc(100% + 100px);
+}
+
+.section03 .slider_handler {
+    display: inline-block;
+    border: 1px solid #f9f9f9;
+    font-size: 0;
+}
+
+.section03 .slider_handler i {
+    font-size: 20px;
+    color: #f9f9f9;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.section03 .slider_handler i~i {
+    border-left: 1px solid #f9f9f9;
+}
+
+.section03 strong {
+    line-height: 60px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.section04 {
+    padding: 100px 0 160px 0;
+    text-align: center;
+    background: #f9f9f9;
+}
+
+.section04 h2 {
+    font-size: 30px;
+    font-weight: 700;
+    margin: 0 0 15px 0;
+}
+
+.section04>p {
+    font-size: 15px;
+    font-weight: 300;
+    margin: 0 0 40px 0;
+}
+
+.section04 .inner {
+    position: relative;
+    width: 100%;
+}
+
+.section04 .center_slider img {
+    margin: 0 auto;
+}
+
+.section04 .center_slider figure {
+    filter: brightness(2) grayscale(1);
+}
+
+.section04 .center_slider figure.on {
+    filter: brightness(1) grayscale(0);
+    transition: 0.3s;
+}
+
+.section04 .content_box>div {
+    display: none;
+}
+
+.section04 .content_box>div.on {
+    display: block;
+}
+
+.section04 .case {
+    position: absolute;
+    left: 50%;
+    top: 100px;
+    background: #fff;
+    padding: 50px;
+    margin: 0 0 0 -530px;
+    width: 300px;
+    text-align: left;
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.25);
+}
+
+.section04 .inner a {
+    display: inline-block;
+    font-size: 13px;
+    padding: 10px 25px;
+    border: 1px solid #008850;
+    color: #008850;
+    margin: 0 0 30px 0;
+}
+
+.section04 .content_box strong {
+    display: block;
+    font-size: 25px;
+    font-weight: 500;
+    margin: 0 0 15px 0;
+}
+
+.section04 .content_box p {
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.45;
+    min-height: 150px;
+    /* 겉의 박스에 높이를 주지 않아서, p 내용에 따라서 a의 위치가 변할 거기 때문에, p한테 높이를 줘서 a의 위치가 고정되도록 한다. */
+}
+
+.section04 .case .num {
+    font-size: 40px;
+    color: #008850;
+}
+
+.section04 .case .num span {
+    font-size: 21px;
+    color: #555;
+}
+
+.section04 .slider_handler {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 1300px;
+}
+
+.section04 .slider_handler i {
+    padding: 15px 25px;
+    background: rgba(0, 0, 0, 0.25);
+    color: #fff;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.section04 .slider_handler i:first-child {
+    float: left;
+}
+
+.section04 .slider_handler i:last-child {
+    float: right;
+}
+
+.section04 .slick-dots {
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.section04 .slick-dots li {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: #ddd;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.section04 .slick-dots li.slick-active {
+    background: #008850;
+}
+
+.section04 .slick-dots li button {
+    display: none;
 }
